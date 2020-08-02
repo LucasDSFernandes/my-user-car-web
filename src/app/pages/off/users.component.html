@@ -1,0 +1,56 @@
+
+    <ul class="d-flex flex-column flex-md-row align-items-center px-md-4 mb-3 nav bg-light border-bottom shadow-sm px-3 py-1">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']"><i class="fas fa-sign-in-alt"></i>  Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/register']"><i class="fa fa-user"></i> Cadastro Usuario</a>
+      </li>
+    </ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+        <div class="card-body">
+            <h4>Usuários</h4>
+            <p>Todos os usuários cadastros.</p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome Completo</th>
+                            <th>E-mail</th>
+                            <th>Login</th>
+                            <th>Telefone</th>
+                            <th>Data de Nascimento</th>
+                            <th>Data de Criação</th>
+                            <th>Ultimo login</th>
+                            <th class="cell-btn"></th>
+                            <th class="cell-btn"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor= "let user of users">
+                            <td class="cell-id">{{user.id}}</td>
+                            <td>{{user.firstName}} {{user.lastName}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.login}}</td>
+                            <td>{{user.phone}}</td>
+                            <td>{{user.birthday | date:'dd/MM/yy'}}</td>
+                            <td>{{user.createdAt | date:'dd/MM/yy HH:mm'}}</td>
+                            <td>{{user.lastLogin | date:'dd/MM/yy HH:mm'}}</td>
+                            <td class="cell-btn">
+                                <a class="btn btn-primary" href="#" (click)="openEdit(user)"><i class="fas fa-pen"></i></a>
+                            </td>
+                            <td class="cell-btn">
+                                <a class="btn" href="#" (click)="delete(user.id)"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

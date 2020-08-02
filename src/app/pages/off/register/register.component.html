@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        <div *ngIf="errorMessage" class="alert alert-danger my-3 mb-0 text-center">{{errorMessage}}</div>
+
+        <div class="card">
+            <div class="card-header">Criação de Usuario</div>
+            <div class="card-body">
+                <form [formGroup]="registerForm" (ngSubmit)="submit()">
+
+                    <div class="form-group">
+                        <label for="fullName">Primeiro nome</label>
+                        <input class="form-control" type="text" formControlName="firstName" />
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of errorMessages.firstName">
+                            <div class="error-message" *ngIf="registerForm.get('firstName').hasError(validation.type) && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)">
+                                {{ validation.message }}
+                            </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Ultimo nome</label>
+                        <input class="form-control" type="text" formControlName="lastName" />
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of errorMessages.lastName">
+                            <div class="error-message" *ngIf="registerForm.get('lastName').hasError(validation.type) && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)">
+                                {{ validation.message }}
+                            </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input class="form-control" type="email" formControlName="email" />
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of errorMessages.email">
+                            <div class="error-message" *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                                {{ validation.message }}
+                            </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input class="form-control" type="tel" formControlName="phone" placeholder="99999999999" />
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of errorMessages.phone">
+                            <div class="error-message" *ngIf="registerForm.get('phone').hasError(validation.type) && (registerForm.get('phone').dirty || registerForm.get('phone').touched)">
+                                {{ validation.message }}
+                            </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthday">Data de nascimento</label>                        
+                        <input class="form-control" type="date" formControlName="birthday" />
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of errorMessages.birthday">
+                            <div class="error-message" *ngIf="registerForm.get('birthday').hasError(validation.type) && (registerForm.get('birthday').dirty || registerForm.get('birthday').touched)">
+                                {{ validation.message }}
+                            </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login">Login usuário</label>
+                        <input class="form-control" type="text" formControlName="login" />
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of errorMessages.login">
+                            <div class="error-message" *ngIf="registerForm.get('login').hasError(validation.type) && (registerForm.get('login').dirty || registerForm.get('login').touched)">
+                                {{ validation.message }}
+                            </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" formControlName="password" />
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of errorMessages.password">
+                            <div class="error-message" *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                                {{ validation.message }}
+                            </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" type="submit" [disabled]="!registerForm.valid">Registrar</button>
+                </form>
+                <p class="mt-3 text-center">Deseja <a [routerLink]="['/full']">Ver Todos Usuarios</a>?</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>

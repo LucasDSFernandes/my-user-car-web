@@ -1,0 +1,23 @@
+<form [formGroup]="editFormVehicle" (ngSubmit)="submit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Altere dados do seu carros</h4>
+        <button class="close pull-right" type="button" aria-label="Fechar" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="form-group">
+        <label for="licensePlate">E-mail</label>
+        <input class="form-control" type="text" formControlName="licensePlate" />
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of errorMessages.licensePlate">
+            <div class="error-message" *ngIf="editFormVehicle.get('licensePlate').hasError(validation.type) && (editFormVehicle.get('licensePlate').dirty || editFormVehicle.get('licensePlate').touched)">
+                {{ validation.message }}
+            </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" (click)="close()">Fechar</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!editFormVehicle.valid">Salvar Alterações</button>
+    </div>
+</form>
