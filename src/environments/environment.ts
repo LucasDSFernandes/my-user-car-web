@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  api: 'http://localhost:8081',
-  auth: 'http://localhost:8082'
+  api: 'https://app-userservice.herokuapp.com',
+  auth: 'https://app-authservice.herokuapp.com'
 };
 

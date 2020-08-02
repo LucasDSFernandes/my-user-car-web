@@ -12,6 +12,7 @@ import { AuthenticationService } from './services/authentication.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
+  title = 'usuarios-web-angular-jwt';
 
   currentToken: Token;
 
