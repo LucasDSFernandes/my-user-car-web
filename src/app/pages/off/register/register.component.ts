@@ -110,7 +110,6 @@ export class RegisterComponent implements OnInit {
       email: this.registerForm.get('email').value,
       phone: this.registerForm.get('phone').value,
       birthday: this.registerForm.get('birthday').value,
-      cars: this.registerForm.get('cars').value,
       login: this.registerForm.get('login').value,
       password: this.registerForm.get('password').value
     };
