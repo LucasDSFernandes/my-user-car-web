@@ -58,7 +58,6 @@ export class FormComponent implements OnInit {
 
   submit() {
     const user = this.setUser();
-    console.log(user);
     this.usersService.update(user)
     .subscribe(res => {
       if (res.sucess) {

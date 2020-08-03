@@ -8,6 +8,7 @@ import { Vehicle } from 'src/app/interfaces/vehicle';
 
 // Services
 import { VehiclesService } from 'src/app/services/vehicles.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-vehicle',
@@ -15,9 +16,7 @@ import { VehiclesService } from 'src/app/services/vehicles.service';
 })
 export class FormVehicleComponent implements OnInit {
 
-  @Output() onClose = new EventEmitter();
-
-  @Input() vehicle: Vehicle;
+  vehicle: Vehicle;
 
   editFormVehicle: FormGroup;
   message = '';
@@ -30,18 +29,18 @@ export class FormVehicleComponent implements OnInit {
   };
 
   constructor(
-    public bsModalRef: BsModalRef,
     private formBuilder: FormBuilder,
-    private vehicleService: VehiclesService
-  ) { }
-
+    private vehicleService: VehiclesService,
+    private router: Router) {
+      this.vehicle = this.router.getCurrentNavigation().extras.state as Vehicle;  
+    }
   ngOnInit() {
     this.editFormVehicle = this.formBuilder.group({
-      licensePlate : ['', Validators.compose([
+      licensePlate: ['', Validators.compose([
         Validators.required,
         Validators.pattern('^([a-zA-Z]{3}[0-9][a-zA-Z][0-9]{2})|([a-zA-Z]{3}[0-9]{4})$')
       ])]
-     
+
     });
 
     this.loadVehicle();
@@ -51,22 +50,16 @@ export class FormVehicleComponent implements OnInit {
     this.editFormVehicle.get('licensePlate').setValue(this.vehicle.licensePlate);
   }
 
-  close(save = false) {
-    this.onClose.emit(save);
-    this.bsModalRef.hide();
-    location.reload();
-  }
-
   submit() {
     const vehicle = this.setVehicle();
-    console.log(vehicle);
     this.vehicleService.update(vehicle)
-    .subscribe(res => {
-      if (res.sucess) {
-        this.message = res.message;
-      } 
-    }, e => console.log(e)
-    );
+      .subscribe(res => {
+        if (res.sucess) {
+          alert(res.message)
+          this.router.navigate(['/vehicles']);
+        }
+      }, e => console.log(e)
+      );
   }
 
   private setVehicle() {

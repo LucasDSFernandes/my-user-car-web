@@ -32,7 +32,6 @@ export class UsersComponent implements OnInit {
     this.usersService.getAll()
       .subscribe((users: User[]) => {
         this.users = users;
-        console.log(this.users);
       },
       e => console.log(e));
   }

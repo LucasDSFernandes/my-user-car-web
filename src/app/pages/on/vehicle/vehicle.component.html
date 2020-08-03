@@ -17,7 +17,7 @@
                         <h4>Meus Veiculos</h4>
                     </div>
                     <div class="col-md-3 float-right">
-                        <a class="btn btn-primary" [routerLink]="['/vehicle']">Cadastrar Carro</a>
+                        <a class="btn btn-primary" [routerLink]="['/vehicle/add']">Cadastrar Carro</a>
                     </div>
                 </div>
                 <div class="col-md-12 table-responsive">
@@ -39,10 +39,10 @@
                                 <td>{{vehicle.year}}</td>
                                 <td>{{vehicle.color}}</td>
                                 <td class="cell-btn">
-                                    <a class="btn btn-primary" href="#" (click)="openEdit(vehicle)"><i class="fas fa-pen"></i></a>
+                                    <a class="btn btn-primary" href="#" [routerLink]="['/vehicle/edit']" [state]="vehicle"><i class="fas fa-pen"></i></a>
                                 </td>
                                 <td class="cell-btn">
-                                    <a class="btn" href="#" (click)="delete(vehicle.id)"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-danger" href="#" (click)="delete(vehicle.id)"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         </tbody>

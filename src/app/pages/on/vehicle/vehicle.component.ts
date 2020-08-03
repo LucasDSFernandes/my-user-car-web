@@ -30,7 +30,6 @@ export class VehicleComponent implements OnInit {
     private userService: UsersService
     ) { 
     if (this.authenticationService.currentTokenValue == null) {
-      console.log(this.authenticationService.currentTokenValue);
       this.router.navigate(['/login']);
     }
   }
@@ -44,7 +43,6 @@ export class VehicleComponent implements OnInit {
     this.vehicleService.getAll()
       .subscribe((vehicles: Vehicle[]) => {
         this.vehicles = vehicles;
-        console.log(this.vehicles);
       },
       e => console.log(e));
   }
@@ -52,24 +50,10 @@ export class VehicleComponent implements OnInit {
     this.userService.getUser()
       .subscribe((user: User) => {
         this.user = user;
-        console.log(this.user);
       },
       e => console.log(e));
   }
 
-  openEdit(vehicle: Vehicle) {
-    const initialState = { vehicle };
-    this.modalRef = this.modalService.show(FormVehicleComponent, { initialState });
-    this.modalRef.content.onClose
-      .subscribe( (save: boolean) => {
-          if (save) {
-            this.getVehicles();
-          }
-      },
-      e => console.log(e)
-      );
-  }
-  
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/']);

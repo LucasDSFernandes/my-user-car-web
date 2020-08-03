@@ -88,18 +88,10 @@ export class RegisterComponent implements OnInit {
     this.usersService.register(user)
       .subscribe(
         (res) => {
-          if (res.erros !== undefined && res.erros !== null) {
-            this.errorMessage = res.erros;
-          } else {
-            if(res.message == undefined){
-              this.router.navigate(['/login']);
-            }
-            this.errorMessage = res.message;
-
-          }
+          alert("Usuario cadastrado com sucesso");
         },
         e => {
-          this.errorMessage = 'Erro ao realizar cadastro.!';
+          this.errorMessage = 'Erro ao realizar cadastro!';
         });
   }
 

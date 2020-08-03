@@ -8,6 +8,7 @@ import { UsersComponent } from './pages/off/users.component';
 import { VehicleComponent } from './pages/on/vehicle/vehicle.component';
 import { RegisterVehicleComponent } from './pages/on/vehicle/register/registervehicle.component';
 import { AuthGuard } from './guards/auth.guard';
+import { FormVehicleComponent } from './pages/on/vehicle/form/formvehicle.component';
 
 
 const routes: Routes = [
@@ -22,8 +23,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'vehicle',
+    path: 'vehicle/add',
     component: RegisterVehicleComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'vehicle/edit',
+    component:  FormVehicleComponent,
     canActivate: [AuthGuard]
   },
   {
